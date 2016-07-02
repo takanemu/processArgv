@@ -1,0 +1,20 @@
+{
+  "name": "processArgv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "node_modules/.bin/electron .",
+    "release": "node release.js",
+    "app": "electron --debug=5858 ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-packager": "^7.0.1",
+    "electron-prebuilt": "^0.37.8"
+  },
+  "dependencies": {
+    "node-7z": "^0.4.0"
+  }
+}

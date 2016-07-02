@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DemoApp</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-app="app" ng-controller="RootCtrl as root">
+    <h1>コマンドライン引数</h1>
+    We are using node <script>document.write(process.versions.node)</script>, Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+    <div>
+        <ul id="container"></ul>
+    </div>
+    <script>
+        // node_integrationを行うとmodule.exports関係の事情でjQuery/$がundefinedになるので
+        // それの回避コード
+        window.jQuery = window.$ = require('./js/jquery-3.0.0.min.js');
+    </script>
+    <script>
+        var remote = require('remote');
+        var argv = remote.process.argv;
+        var container = document.getElementById('container');
+
+        for(var i = 0; i < argv.length; i++)
+        {
+            var li = document.createElement('li');
+            var tnode = document.createTextNode(argv[i]);
+
+            li.appendChild(tnode);
+            container.appendChild(li);
+        }
+    </script>
+</body>
+
+</html>
